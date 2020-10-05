@@ -7,7 +7,6 @@ Created on Mon Oct  5 16:22:52 2020
 
 import sqlalchemy
 import uuid
-import pandas as df
 
 from sqlalchemy import create_engine
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
@@ -68,7 +67,11 @@ contient        =Table(CONTIENT, metadata,
 
 
 #Insertion des données dans la BDD
-fichInstall = df.read_csv('D:/Utilisateur/Bureau/projetPython_data/20180110_RES_FichesInstallations.csv', delimiter=";", usecols=[0, 2, 4], dtype={0:str, 2:str, 4:str })
+import pandas as df
+
+fichInstall = df.read_csv('D:/Utilisateur/Bureau/projetPython_data/20180110_RES_FichesInstallations.csv', delimiter=";", usecols=[0, 2, 4, 6, 8], dtype={0:str, 2:str, 4:str, 6:str, 8:str })
+
+print(fichInstall.head())
 
 dataInstallID = []
 
@@ -76,5 +79,5 @@ for i in range(0, len(fichInstall)):
     if(fichInstall.iloc[i]['DepCode'] == '31'):
         dataInstallID.append(fichInstall.iloc[i]['InsNumeroInstall'])
         
-print(len(dataInstallID))
+print(dataInstallID[0])
     
